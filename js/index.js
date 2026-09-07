@@ -52,5 +52,7 @@ function displayBooks(books) {
 
 addBookToLibrary("The Reason for God", "Tim Keller", 507, true);
 addBookToLibrary("Fairy Tales", "J.B. Jones", 200, false);
+addBookToLibrary("The Reason for God", "Tim Keller", 507, true);
+addBookToLibrary("Fairy Tales", "J.B. Jones", 200, false);
 
 displayBooks(myLibrary);

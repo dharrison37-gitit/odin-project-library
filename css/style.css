@@ -7,10 +7,16 @@
 :root {
     font-family: system-ui;
     font-size: 16px;
+    color: white;
+    line-height: 1.5;
+}
+
+body {
+    background-color: darkslategray;
 }
 
 .container {
-    width: 80vw;
+    width: 90vw;
     margin: 20px auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -19,24 +25,29 @@
 
 .card {
     width: 300px;
-    background-color: rgb(0 0 0 / 0.4);
+    background-color: rgb(84, 48, 4);
     border: 1px solid;
+    padding: 1rem;
 }
 
 .card-title {
-    background: slategray;
+    font-size: 1.2rem;
+    background: rgb(0 0 0 / 0.4);
     color: white;
 }
 
 .author {
+    font-weight: 777;
 }
 
-.pages {
+.pages,
+.read {
+    font-size: 0.9rem;
 }
 
 .read[data-status="true"] {
-    background-color: green;
+    background-color: rgb(0 120 0 / 0.5);
 }
 .read[data-status="false"] {
-    background-color: red;
+    background-color: rgb(120 0 0 / 0.5);
 }
