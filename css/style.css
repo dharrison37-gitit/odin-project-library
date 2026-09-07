@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+    padding: 0.3rem;
+    margin: 0;
+}
+
+:root {
+    font-family: system-ui;
+    font-size: 16px;
+}
+
+.container {
+    width: 80vw;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+}
+
+.card {
+    width: 300px;
+    background-color: rgb(0 0 0 / 0.4);
+    border: 1px solid;
+}
+
+.card-title {
+    background: slategray;
+    color: white;
+}
+
+.author {
+}
+
+.pages {
+}
+
+.read[data-status="true"] {
+    background-color: green;
+}
+.read[data-status="false"] {
+    background-color: red;
+}
