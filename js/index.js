@@ -9,10 +9,6 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
-
-    // this.info = function () {
-    //     return `${this.title} by ${this.author}, ${this.pages} pages, ${read ? "read it" : "not read yet"}`;
-    // };
 }
 
 Book.prototype.toggleRead = function () {
