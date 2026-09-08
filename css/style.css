@@ -25,7 +25,7 @@ body {
     width: 50vw;
     margin: 20px auto;
     display: grid;
-    border: 1px solid var(--dark-gray);
+    border: 1px solid var(--grayish-khaki);
     text-align: center;
 }
 
