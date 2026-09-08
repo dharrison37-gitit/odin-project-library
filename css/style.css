@@ -9,35 +9,86 @@
     font-size: 16px;
     color: white;
     line-height: 1.5;
+
+    --purple-maroon: rgb(78 66 76 / 1);
+    --blackish-brown: rgb(58 56 55 / 1);
+    --grayish-khaki: rgb(88 90 83 / 1);
+    --dark-brown: rgb(61 53 50 / 1);
+    --dark-gray: rgb(69 73 72 / 1);
 }
 
 body {
-    background-color: darkslategray;
+    background-color: var(--blackish-brown);
 }
 
 .container {
     width: 90vw;
     margin: 20px auto;
     display: grid;
+}
+
+button {
+    width: 150px;
+    background-color: var(--grayish-khaki);
+    color: white;
+    font-weight: 777;
+    border: 0.2rem solid var(--purple-maroon);
+    border-radius: 1rem;
+    padding: 1rem 1rem;
+    margin: 30px auto;
+    grid-row: 1;
+}
+
+button:hover {
+    border-color: white;
+}
+
+dialog {
+    width: 400px;
+    margin: 10% auto;
+    padding: 30px;
+}
+
+dialog form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+form button {
+    align-self: center;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+}
+
+.grid-container {
+    margin: 0 auto;
+    display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.2rem;
+    grid-row: 2;
 }
 
 .card {
-    width: 300px;
-    background-color: rgb(84, 48, 4);
-    border: 1px solid;
+    width: 350px;
+    height: 300px;
+    background-color: var(--grayish-khaki);
+    border: 0.3rem solid var(--purple-maroon);
     padding: 1rem;
 }
 
 .card-title {
     font-size: 1.2rem;
     background: rgb(0 0 0 / 0.4);
-    color: white;
+    text-transform: capitalize;
 }
 
 .author {
     font-weight: 777;
+    text-transform: capitalize;
 }
 
 .pages,
@@ -48,6 +99,13 @@ body {
 .read[data-status="true"] {
     background-color: rgb(0 120 0 / 0.5);
 }
+
 .read[data-status="false"] {
     background-color: rgb(120 0 0 / 0.5);
+}
+
+.delete {
+    background-color: rgb(166, 0, 0);
+    color: white;
+    margin: 5px;
 }
