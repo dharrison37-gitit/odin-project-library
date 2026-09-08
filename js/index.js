@@ -43,6 +43,9 @@ function displayBooks(books) {
         pages.textContent = `Number of pages: ${book.pages}`;
         card.appendChild(pages);
 
+        const buttonContainer = document.createElement("div");
+        buttonContainer.className = "btn-container";
+
         let read = document.createElement("button");
         read.className = "read";
         read.setAttribute("data-status", book.read);
@@ -51,12 +54,11 @@ function displayBooks(books) {
             book.toggleRead();
             displayBooks(myLibrary);
         });
-        card.appendChild(read);
+        buttonContainer.appendChild(read);
 
         let deleteButton = document.createElement("button");
         deleteButton.className = "delete";
-        deleteButton.textContent = "Delete Book";
-        card.appendChild(deleteButton);
+        deleteButton.textContent = "Delete";
         deleteButton.addEventListener("click", (e) => {
             const indexToRemove = myLibrary.findIndex(
                 (obj) => obj.id === e.target.parentNode.dataset.id,
@@ -65,6 +67,9 @@ function displayBooks(books) {
             myLibrary.splice(indexToRemove, 1);
             displayBooks(myLibrary);
         });
+        buttonContainer.appendChild(deleteButton);
+
+        card.appendChild(buttonContainer);
 
         container.appendChild(card);
     });
