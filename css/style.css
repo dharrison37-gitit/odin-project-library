@@ -25,18 +25,22 @@ body {
     width: 90vw;
     margin: 20px auto;
     display: grid;
+    text-align: center;
+}
+
+h1 {
+    grid-row: 1;
 }
 
 button {
-    width: 150px;
+    width: 7rem;
     background-color: var(--grayish-khaki);
     color: white;
     font-weight: 777;
     border: 0.2rem solid var(--purple-maroon);
     border-radius: 1rem;
-    padding: 1rem 1rem;
     margin: 30px auto;
-    grid-row: 1;
+    grid-row: 2;
 }
 
 button:hover {
@@ -65,19 +69,19 @@ input[type="number"] {
 }
 
 .grid-container {
+    grid-row: 3;
+
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.2rem;
-    grid-row: 2;
 }
 
 .card {
-    width: 350px;
-    height: 300px;
+    width: 400px;
+    height: 250px;
     background-color: var(--grayish-khaki);
     border: 0.3rem solid var(--purple-maroon);
-    padding: 1rem;
 }
 
 .card-title {
@@ -91,8 +95,7 @@ input[type="number"] {
     text-transform: capitalize;
 }
 
-.pages,
-.read {
+.pagess {
     font-size: 0.9rem;
 }
 
@@ -107,5 +110,19 @@ input[type="number"] {
 .delete {
     background-color: rgb(166, 0, 0);
     color: white;
-    margin: 5px;
+}
+
+.delete,
+.read {
+    width: 7rem;
+    height: 3rem;
+}
+
+.btn-container {
+    position: relative;
+    height: 50%;
+    display: grid;
+    grid-auto-rows: 1fr;
+    gap: 10px;
+    margin-top: auto;
 }
