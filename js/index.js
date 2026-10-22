@@ -95,12 +95,17 @@ form.addEventListener("submit", (e) => {
   const formData = new FormData(form);
   const title = formData.get("title");
   const author = formData.get("author");
-  const pages = formData.get("pages");
-  const read = formData.get("read");
+  const pages = Number(formData.get("pages"));
+  const read = formData.has("read");
+  const errorMessage = document.querySelector(".error-message");
+  const validData = validateBookData(title, author, pages);
 
-  if (!title || !author) {
+  if (!validData.isValid) {
+    errorMessage.classList.add("active");
+    errorMessage.textContent = validData.message;
     return;
   } else {
+    errorMessage.classList.remove("active");
     addBookToLibrary(title, author, pages, read);
     dialog.close();
 
@@ -109,6 +114,26 @@ form.addEventListener("submit", (e) => {
     form.reset();
   }
 });
+
+function validateBookData(title, author, pages, minLength = 10) {
+  if (!title || typeof title !== "string" || title.trim() === "") {
+    return { isValid: false, message: "Title of book is required" };
+  }
+
+  if (!author || typeof author !== "string" || author.trim() === "") {
+    return { isValid: false, message: "Author of book is required" };
+  }
+
+  if (!pages || typeof pages !== "number") {
+    return { isValid: false, message: "Pages must be a number" };
+  }
+
+  if (pages < minLength) {
+    return { isValid: false, message: `Pages must be at least ${minLength}` };
+  }
+
+  return { isValid: true };
+}
 
 //#region Dummy Data for display
 

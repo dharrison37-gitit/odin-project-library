@@ -33,7 +33,7 @@
             </div>
             <div>
                 <label for="pages">Number of pages:</label>
-                <input type="number" name="pages" id="pages">
+                <input type="number" name="pages" id="pages" required minlength="10">
             </div>
             <div>
                 <label for="read">Read the book?</label>
@@ -44,6 +44,7 @@
                 <button id="cancel">Cancel</button>
             </div>
         </form>
+        <div class="error-message"></div>  
     </dialog>
     <script type="module" src="./js/index.js"></script>
 </body>

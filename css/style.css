@@ -126,3 +126,12 @@ input[type="number"] {
     gap: 10px;
     margin-top: auto;
 }
+
+.error-message {
+    display: none;
+    color: red
+}
+
+.error-message.active{
+    display: block;
+}
