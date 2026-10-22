@@ -4,126 +4,121 @@ const myLibrary = [];
 displayBooks(myLibrary);
 
 class Book {
-    constructor(title, author, pages, read) {
-        this.id = crypto.randomUUID();
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.read = read;
-    }
+  constructor(title, author, pages, read) {
+    this.id = crypto.randomUUID();
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 
-    toggleRead() {
-        this.read = !this.read;
-    }
+  toggleRead() {
+    this.read = !this.read;
+  }
 }
 
 function addBookToLibrary(title, author, pages, read) {
-    const book = new Book(title, author, pages, read);
-    myLibrary.push(book);
+  const book = new Book(title, author, pages, read);
+  myLibrary.push(book);
 }
 
 function displayBooks(books) {
-    const container = document.querySelector(".grid-container");
-    container.textContent = "";
-    books.map((book) => {
-        let card = document.createElement("div");
-        card.setAttribute("data-id", book.id);
-        card.className = "card";
+  const container = document.querySelector(".grid-container");
+  container.textContent = "";
+  books.map((book) => {
+    let card = document.createElement("div");
+    card.setAttribute("data-id", book.id);
+    card.className = "card";
 
-        let title = document.createElement("h2");
-        title.className = "card-title";
-        title.textContent = book.title;
-        card.appendChild(title);
+    let title = document.createElement("h2");
+    title.className = "card-title";
+    title.textContent = book.title;
+    card.appendChild(title);
 
-        let author = document.createElement("div");
-        author.className = "author";
-        author.textContent = `Author: ${book.author}`;
-        card.appendChild(author);
+    let author = document.createElement("div");
+    author.className = "author";
+    author.textContent = `Author: ${book.author}`;
+    card.appendChild(author);
 
-        let pages = document.createElement("div");
-        pages.className = "pages";
-        pages.textContent = `Number of pages: ${book.pages}`;
-        card.appendChild(pages);
+    let pages = document.createElement("div");
+    pages.className = "pages";
+    pages.textContent = `Number of pages: ${book.pages}`;
+    card.appendChild(pages);
 
-        const buttonContainer = document.createElement("div");
-        buttonContainer.className = "btn-container";
+    const buttonContainer = document.createElement("div");
+    buttonContainer.className = "btn-container";
 
-        let read = document.createElement("button");
-        read.className = "read";
-        read.setAttribute("data-status", book.read);
-        read.textContent = `${book.read ? "Read : Yes" : "Read : No"}`;
-        read.addEventListener("click", (e) => {
-            book.toggleRead();
-            displayBooks(myLibrary);
-        });
-        buttonContainer.appendChild(read);
-
-        let deleteButton = document.createElement("button");
-        deleteButton.className = "delete";
-        deleteButton.textContent = "Delete";
-        deleteButton.addEventListener("click", (e) => {
-            const indexToRemove = myLibrary.findIndex(
-                (obj) => obj.id === e.target.parentNode.dataset.id,
-            );
-
-            myLibrary.splice(indexToRemove, 1);
-            displayBooks(myLibrary);
-        });
-        buttonContainer.appendChild(deleteButton);
-
-        card.appendChild(buttonContainer);
-
-        container.appendChild(card);
+    let read = document.createElement("button");
+    read.className = "read";
+    read.setAttribute("data-status", book.read);
+    read.textContent = `${book.read ? "Read : Yes" : "Read : No"}`;
+    read.addEventListener("click", (e) => {
+      book.toggleRead();
+      displayBooks(myLibrary);
     });
+    buttonContainer.appendChild(read);
+
+    let deleteButton = document.createElement("button");
+    deleteButton.className = "delete";
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", (e) => {
+      const indexToRemove = myLibrary.findIndex((obj) => obj.id === e.target.parentNode.dataset.id);
+
+      myLibrary.splice(indexToRemove, 1);
+      displayBooks(myLibrary);
+    });
+    buttonContainer.appendChild(deleteButton);
+
+    card.appendChild(buttonContainer);
+
+    container.appendChild(card);
+  });
 }
 
+const form = document.querySelector("form");
 const newBook = document.querySelector("#new-book");
 const addBook = document.querySelector("#add-book");
 const cancel = document.querySelector("#cancel");
 const dialog = document.querySelector("#my-dialog");
 
 newBook.addEventListener("click", (e) => {
-    dialog.showModal();
+  dialog.showModal();
 });
 
 cancel.addEventListener("click", (e) => {
-    dialog.close();
+  dialog.close();
 });
 
-addBook.addEventListener("click", (e) => {
-    e.preventDefault();
-    const form = document.querySelector("form");
-    const title = form.elements["title"].value;
-    const author = form.elements["author"].value;
-    const pages = form.elements["pages"].value;
-    const read = form.elements["read"].checked;
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-    if (!title || !author) {
-        return;
-    } else {
-        addBookToLibrary(title, author, pages, read);
-        dialog.close();
+  const formData = new FormData(form);
+  const title = formData.get("title");
+  const author = formData.get("author");
+  const pages = formData.get("pages");
+  const read = formData.get("read");
 
-        displayBooks(myLibrary);
+  if (!title || !author) {
+    return;
+  } else {
+    addBookToLibrary(title, author, pages, read);
+    dialog.close();
 
-        form.reset();
-    }
+    displayBooks(myLibrary);
+
+    form.reset();
+  }
 });
 
 //#region Dummy Data for display
 
 function addDummyData() {
-    addBookToLibrary(
-        "Wherever you go, there you are",
-        "Jon Kabat-Zinn PhD",
-        309,
-        false,
-    );
-    addBookToLibrary("Think Like a Programmer", "V. Anton Spraul", 256, true);
-    addBookToLibrary("The Four Loves", "C. S. Lewis", 192, false);
-    addBookToLibrary("The Reason for God", "Tim Keller", 251, true);
+  addBookToLibrary("Wherever you go, there you are", "Jon Kabat-Zinn PhD", 309, false);
+  addBookToLibrary("Think Like a Programmer", "V. Anton Spraul", 256, true);
+  addBookToLibrary("The Four Loves", "C. S. Lewis", 192, false);
+  addBookToLibrary("The Reason for God", "Tim Keller", 251, true);
 
-    displayBooks(myLibrary);
+  displayBooks(myLibrary);
 }
 
 addDummyData();
