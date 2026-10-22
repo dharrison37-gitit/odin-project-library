@@ -125,7 +125,7 @@ function validateBookData(title, author, pages, minLength = 10) {
   }
 
   if (!pages || typeof pages !== "number") {
-    return { isValid: false, message: "Pages must be a number" };
+    return { isValid: false, message: "Pages are required and must be a number" };
   }
 
   if (pages < minLength) {
